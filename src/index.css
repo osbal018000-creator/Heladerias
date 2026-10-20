@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #FFF8EC;
+    color: #54382F;
+  }
+  h1, h2, h3, .font-display {
+    font-family: 'Nunito', 'Inter', system-ui, sans-serif;
+  }
+}
+
+/* Decorative cream-dots background pattern */
+.bg-cream-dots {
+  background-color: #FFF8EC;
+  background-image: radial-gradient(circle, rgba(247, 168, 184, 0.12) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+/* Subtle wave divider */
+.bg-cream-waves {
+  background-color: #FFF8EC;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 20% 0%, rgba(247, 168, 184, 0.08), transparent),
+    radial-gradient(ellipse 50% 35% at 80% 10%, rgba(185, 206, 145, 0.08), transparent),
+    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(244, 217, 135, 0.07), transparent);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(84, 56, 47, 0.15);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(84, 56, 47, 0.25);
+}
+
+/* Print: only receipt content */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print\:block,
+  .print\:block * {
+    visibility: visible;
+  }
+  .print\:block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
