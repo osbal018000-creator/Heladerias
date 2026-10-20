@@ -1,141 +1,45 @@
-import { useState, useEffect } from 'react';
-import { POSScreen } from './components/POSScreen';
-import { Dashboard } from './components/Dashboard';
-import { ProductsAdmin } from './components/ProductsAdmin';
-import { SalesAnalytics } from './components/SalesAnalytics';
-import { Orders } from './components/Orders';
-import { ToastContainer } from './components/Toast';
-import {
-  IceCream2,
-  LayoutDashboard,
-  Package,
-  BarChart3,
-  ClipboardList,
-  Menu,
-  X,
-} from 'lucide-react';
+/* Pega esto en tu index.css (después de las directivas @tailwind) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Nunito+Sans:wght@400;600;700;800&display=swap');
 
-type Tab = 'pos' | 'dashboard' | 'analytics' | 'products' | 'orders';
-
-const NAV: { id: Tab; label: string; icon: typeof IceCream2 }[] = [
-  { id: 'pos', label: 'Vender', icon: IceCream2 },
-  { id: 'dashboard', label: 'Inicio', icon: LayoutDashboard },
-  { id: 'analytics', label: 'Ventas', icon: BarChart3 },
-  { id: 'products', label: 'Productos', icon: Package },
-  { id: 'orders', label: 'Pedidos', icon: ClipboardList },
-];
-
-function App() {
-  const [tab, setTab] = useState<Tab>('pos');
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-  useEffect(() => {
-    setMobileNavOpen(false);
-  }, [tab]);
-
-  const renderTab = () => {
-    switch (tab) {
-      case 'pos':
-        return <POSScreen onNavigate={(nextTab) => setTab(nextTab as Tab)} />;
-      case 'dashboard':
-        return <Dashboard onNavigate={(nextTab) => setTab(nextTab as Tab)} />;
-      case 'analytics':
-        return <SalesAnalytics />;
-      case 'products':
-        return <ProductsAdmin onNavigate={(nextTab) => setTab(nextTab as Tab)} />;
-      case 'orders':
-        return <Orders />;
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-cream-waves text-choco-600 flex flex-col">
-      <header className="bg-cream-50/95 backdrop-blur-sm border-b border-cream-200 sticky top-0 z-30 print:hidden">
-        <div className="flex items-center justify-between px-4 h-16 max-w-[1600px] mx-auto">
-          <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-2xl bg-gradient-to-br from-strawberry-400 to-strawberry-500 flex items-center justify-center shadow-warm">
-              <IceCream2 className="w-5.5 h-5.5 text-white" strokeWidth={2.2} />
-              <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-pistachio-300 border-2 border-cream-50" />
-            </div>
-            <div className="leading-none">
-              <h1 className="font-display font-extrabold text-choco-600 text-[15px]">
-                Heladería
-              </h1>
-              <p className="text-[10px] text-choco-400 mt-0.5 font-medium tracking-wide">
-                Punto de venta
-              </p>
-            </div>
-          </div>
-
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV.map((item) => {
-              const Icon = item.icon;
-              const active = tab === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setTab(item.id)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all ${
-                    active
-                      ? 'bg-strawberry-100 text-strawberry-600'
-                      : 'text-choco-400 hover:bg-cream-100 hover:text-choco-600'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" strokeWidth={active ? 2.4 : 2} />
-                  {item.label}
-                </button>
-              );
-            })}
-          </nav>
-
-          <button
-            onClick={() => setMobileNavOpen((open) => !open)}
-            className="lg:hidden p-2 rounded-xl hover:bg-cream-100 text-choco-500"
-            aria-label={mobileNavOpen ? 'Cerrar menú' : 'Abrir menú'}
-          >
-            {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-
-        {mobileNavOpen && (
-          <nav className="lg:hidden border-t border-cream-200 bg-cream-50 px-3 py-2 grid grid-cols-2 gap-1">
-            {NAV.map((item) => {
-              const Icon = item.icon;
-              const active = tab === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setTab(item.id)}
-                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold ${
-                    active
-                      ? 'bg-strawberry-100 text-strawberry-600'
-                      : 'text-choco-400 hover:bg-cream-100'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {item.label}
-                </button>
-              );
-            })}
-          </nav>
-        )}
-      </header>
-
-      <main className="flex-1 print:block">{renderTab()}</main>
-
-      {tab !== 'pos' && (
-        <button
-          onClick={() => setTab('pos')}
-          className="lg:hidden fixed bottom-4 right-4 z-40 bg-strawberry-500 text-white rounded-full shadow-warm w-14 h-14 flex items-center justify-center active:scale-95 transition-transform print:hidden"
-          title="Vender"
-        >
-          <IceCream2 className="w-6 h-6" />
-        </button>
-      )}
-
-      <ToastContainer />
-    </div>
-  );
+html {
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-export default App;
+/* Fondo: crema vainilla con dos destellos suaves y una onda de crema al pie.
+   Es solo background-image: no intercepta clics ni compite con el contenido. */
+.bg-cream-waves {
+  background-color: #fff8ec;
+  background-image:
+    radial-gradient(520px 320px at 8% -4%, rgba(247, 168, 184, 0.22), transparent 70%),
+    radial-gradient(480px 300px at 100% 12%, rgba(185, 206, 145, 0.20), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160' preserveAspectRatio='none'%3E%3Cpath d='M0 90c120 40 240 40 360 10s240-50 360-30 240 60 360 50 240-50 360-30v110H0z' fill='%23F4D987' fill-opacity='.22'/%3E%3Cpath d='M0 120c140 30 260 20 380-5s260-30 380-10 220 40 300 30 240-30 380-10v35H0z' fill='%23F7A8B8' fill-opacity='.18'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top left, top right, bottom center;
+  background-size: auto, auto, 100% 140px;
+  background-attachment: fixed;
+}
+
+/* Cambio de módulo / apertura de menú: breve, no bloquea clics */
+@keyframes tab-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-tab-in { animation: tab-in 150ms ease-out both; }
+
+/* Útil para el contador del carrito y la confirmación al agregar un producto */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: pop 180ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
