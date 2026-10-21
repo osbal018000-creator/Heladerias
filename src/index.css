@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     background-color: #FFF8EC;
     color: #54382F;
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, .font-display {
     font-family: 'Nunito', 'Inter', system-ui, sans-serif;
@@ -20,14 +23,34 @@
   background-size: 28px 28px;
 }
 
-/* Subtle wave divider */
+/* Fondo principal: crema con destellos suaves y una onda de crema al pie.
+   Es solo background-image, no intercepta clics. */
 .bg-cream-waves {
   background-color: #FFF8EC;
   background-image:
-    radial-gradient(ellipse 60% 40% at 20% 0%, rgba(247, 168, 184, 0.08), transparent),
-    radial-gradient(ellipse 50% 35% at 80% 10%, rgba(185, 206, 145, 0.08), transparent),
-    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(244, 217, 135, 0.07), transparent);
+    radial-gradient(520px 320px at 8% -4%, rgba(247, 168, 184, 0.22), transparent 70%),
+    radial-gradient(480px 300px at 100% 12%, rgba(185, 206, 145, 0.20), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160' preserveAspectRatio='none'%3E%3Cpath d='M0 90c120 40 240 40 360 10s240-50 360-30 240 60 360 50 240-50 360-30v110H0z' fill='%23F4D987' fill-opacity='.22'/%3E%3Cpath d='M0 120c140 30 260 20 380-5s260-30 380-10 220 40 300 30 240-30 380-10v35H0z' fill='%23F7A8B8' fill-opacity='.18'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top left, top right, bottom center;
+  background-size: auto, auto, 100% 140px;
+  background-attachment: fixed;
 }
+
+/* Entrada breve al cambiar de módulo o abrir el menú móvil */
+@keyframes tab-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-tab-in { animation: tab-in 150ms ease-out both; }
+
+/* Para el contador del carrito y la confirmación al agregar */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: pop 180ms ease-out; }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
