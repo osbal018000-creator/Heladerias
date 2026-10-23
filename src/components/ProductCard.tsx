@@ -9,9 +9,9 @@ interface Props {
 }
 
 const badgeStyles: Record<string, string> = {
-  'Más vendido': 'bg-strawberry-100 text-strawberry-600',
-  Nuevo: 'bg-pistachio-100 text-pistachio-600',
-  Favorito: 'bg-butter-100 text-butter-400',
+  'Más vendido': 'bg-strawberry-100 text-strawberry-700',
+  Nuevo: 'bg-pistachio-100 text-choco-600',
+  Favorito: 'bg-butter-100 text-choco-600',
 };
 
 export function ProductCard({ product, onClick }: Props) {
@@ -80,7 +80,7 @@ export function ProductCard({ product, onClick }: Props) {
           </p>
         )}
         <div className="mt-auto pt-2 flex items-center justify-between">
-          <span className="text-lg font-bold font-display text-strawberry-500">
+          <span className="text-lg font-extrabold font-display text-strawberry-600">
             {formatCOP(product.base_price)}
           </span>
           <span className="w-7 h-7 rounded-full bg-cream-100 group-hover:bg-strawberry-100 flex items-center justify-center transition-colors">

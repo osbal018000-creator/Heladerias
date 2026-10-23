@@ -117,7 +117,7 @@ export function CartPanel({
               </div>
               <button
                 onClick={() => onRemove(item.key)}
-                className="text-choco-300 hover:text-red-500 p-1 -mt-1 transition-colors"
+                className="text-choco-400 hover:text-red-500 p-1 -mt-1 transition-colors"
                 title="Eliminar"
               >
                 <Trash2 className="w-4 h-4" />

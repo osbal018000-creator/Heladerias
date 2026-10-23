@@ -25,7 +25,7 @@ const CATEGORY_STYLES: Record<
   { active: string; idle: string; icon: typeof IceCream2 }
 > = {
   Helados: {
-    active: 'bg-strawberry-500 text-white shadow-warm',
+    active: 'bg-strawberry-600 text-white shadow-warm',
     idle: 'bg-white text-choco-500 border border-cream-200 hover:border-strawberry-300',
     icon: IceCream2,
   },
@@ -40,7 +40,7 @@ const CATEGORY_STYLES: Record<
     icon: Plus,
   },
   Otros: {
-    active: 'bg-pistachio-500 text-white shadow-soft',
+    active: 'bg-pistachio-600 text-white shadow-soft',
     idle: 'bg-white text-choco-500 border border-cream-200 hover:border-pistachio-400',
     icon: CupSoda,
   },
@@ -48,7 +48,7 @@ const CATEGORY_STYLES: Record<
 
 const getCatStyle = (name: string) =>
   CATEGORY_STYLES[name] ?? {
-    active: 'bg-strawberry-500 text-white shadow-warm',
+    active: 'bg-strawberry-600 text-white shadow-warm',
     idle: 'bg-white text-choco-500 border border-cream-200 hover:border-strawberry-300',
     icon: IceCream2,
   };
